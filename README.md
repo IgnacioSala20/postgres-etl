@@ -102,7 +102,7 @@ services:
 2. Crear archivo .env.db
    Crea el archivo .env.db en la raíz del proyecto con este contenido:
    ```yaml
-     DATABASE_HOST=db
+    DATABASE_HOST=db
     DATABASE_PORT=5432
     DATABASE_NAME=postgres
     DATABASE_USER=postgres
@@ -115,6 +115,89 @@ services:
     SUPERSET_SECRET_KEY=your_secret_key_here
    ```
 3.Levantar los servicios
+  ```yaml
+    docker compose up -d
+  ```
+4.Acceso a las herramientas
+- Superset: http://localhost:8088
+- Credenciales por defecto: admin / admin
+
+5.Crear un usuario administrador en Superset
+  ```yaml
+    docker exec -it superset-superset-1 superset fab create-admin \
+    --username admin \
+    --firstname Admin \
+    --lastname User \
+    --email admin@superset.com \
+    --password admin
+  ```
+  Si deseas eliminar este usuario:
+  ```yaml
+    docker exec -it superset-superset-1 superset fab delete-user --username admin
+  ```
+
+## 🚀 Uso del Proyecto
+
+### 1. Conectar Superset con la base de datos
+
+En Superset:
+
+- Navega a **Settings > Database Connections**
+- Haz clic en **+ Database**
+- Completa los siguientes campos:
     ```yaml
-     docker compose up -d
-   ```
+    Host: db
+    Puerto: 5432
+    Base de datos: postgres
+    Usuario: postgres
+    Contraseña: postgres
+  ```
+segúrate de que la conexión sea exitosa antes de continuar.
+
+---
+
+### 2. Cargar datasets
+
+Una vez conectada la base de datos, puedes cargar tus datasets en las tablas de PostgreSQL.  
+Asegúrate de que los archivos `.csv` u otras fuentes estén correctamente estructurados y cargados en la base de datos (puedes usar scripts SQL o herramientas como DBeaver o pgAdmin si lo prefieres).
+
+---
+
+### 3. Ejecutar consultas SQL
+
+Desde Superset:
+
+- Ve a **SQL Lab > SQL Editor**
+- Elige la base de datos conectada
+- Ejecuta una consulta, por ejemplo:
+
+```sql
+SELECT * FROM provincias LIMIT 10;
+💡 Reemplaza provincias por el nombre de la tabla que hayas cargado.
+
+### 4. Crear gráficos y dashboards
+
+- Accede a la sección **Charts**
+- Haz clic en **+ Chart**
+- Selecciona el dataset que desees utilizar
+- Configura:
+  - Tipo de gráfico
+  - Ejes
+  - Métricas
+  - Filtros (opcional)
+
+Luego, agrupa tus gráficos en un **Dashboard** desde la sección correspondiente.
+
+---
+
+## 📌 Notas Finales
+
+Este proyecto permite visualizar y analizar datos públicos geográficos de forma flexible y moderna.  
+Podés adaptarlo para:
+
+- Incluir nuevos datasets
+- Enriquecer los análisis existentes
+- Integrarlo con otras herramientas de visualización y ciencia de datos
+
+
+
