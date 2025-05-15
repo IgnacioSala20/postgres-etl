@@ -173,6 +173,7 @@ Desde Superset:
 
 ```sql
 SELECT * FROM provincias LIMIT 10;
+```
 💡 Reemplaza provincias por el nombre de la tabla que hayas cargado.
 
 ### 4. Crear gráficos y dashboards
