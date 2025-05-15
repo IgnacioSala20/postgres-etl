@@ -1,7 +1,6 @@
 # 📊 postgres-etl
 
 Un proyecto ETL con Docker, PostgreSQL y Apache Superset para el análisis de datos geográficos de Argentina.
-
 ---
 
 ## 📥 Descarga de Datasets
@@ -10,7 +9,7 @@ Los datasets utilizados en este proyecto pueden descargarse desde el portal ofic
 
 🔗 [https://datos.gob.ar/dataset](https://datos.gob.ar/dataset)
 
-Este portal proporciona información pública reutilizable, incluyendo datos relacionados con los **servicios de normalización de direcciones** y **unidades territoriales** de Argentina.
+Esta ruta proporciona información pública reutilizable, incluyendo datos relacionados con los **servicios de normalización de direcciones** y **unidades territoriales** de Argentina.
 
 ---
 
@@ -118,24 +117,31 @@ services:
   ```yaml
     docker compose up -d
   ```
-4.Acceso a las herramientas
+
+4.Crear un usuario administrador en Superset- Todo esto desde la terminal donde levantamos los servicios
+  Inicializamos el usuario de superset
+  ```yaml
+    docker compose exec -it superset superset fab create-admin \
+              --username admin \
+              --firstname Superset \
+              --lastname Admin \
+              --email admin@superset.com \
+              --password admin
+  ```
+Migramos la base de datos
+  ```yaml
+    docker compose exec -it superset superset db upgrade
+  ```
+Por ultimo Seteamos los Roles
+  ```yaml
+    docker compose exec -it superset superset init
+  ```
+Ahora si estamos listos para acceder a nuestras herramienta!!!
+
+5.Acceso a las herramientas
 - Superset: http://localhost:8088
 - Credenciales por defecto: admin / admin
-
-5.Crear un usuario administrador en Superset
-  ```yaml
-    docker exec -it superset-superset-1 superset fab create-admin \
-    --username admin \
-    --firstname Admin \
-    --lastname User \
-    --email admin@superset.com \
-    --password admin
-  ```
-  Si deseas eliminar este usuario:
-  ```yaml
-    docker exec -it superset-superset-1 superset fab delete-user --username admin
-  ```
-
+  
 ## 🚀 Uso del Proyecto
 
 ### 1. Conectar Superset con la base de datos
@@ -152,7 +158,7 @@ En Superset:
     Usuario: postgres
     Contraseña: postgres
   ```
-segúrate de que la conexión sea exitosa antes de continuar.
+asegúrate de que la conexión sea exitosa antes de continuar.
 
 ---
 
@@ -191,14 +197,6 @@ Luego, agrupa tus gráficos en un **Dashboard** desde la sección correspondient
 
 ---
 
-## 📌 Notas Finales
-
-Este proyecto permite visualizar y analizar datos públicos geográficos de forma flexible y moderna.  
-Podés adaptarlo para:
-
-- Incluir nuevos datasets
-- Enriquecer los análisis existentes
-- Integrarlo con otras herramientas de visualización y ciencia de datos
 
 
 
