@@ -120,6 +120,7 @@ services:
 
 4.Crear un usuario administrador en Superset- Todo esto desde la terminal donde levantamos los servicios
   Inicializamos el usuario de superset
+  Esto lo ejecutamos en linux y en windows, si da error en windows, se utiliza el comando de abajo que se encuentra en una sola linea
   ```yaml
     docker compose exec -it superset superset fab create-admin \
               --username admin \
@@ -128,7 +129,7 @@ services:
               --email admin@superset.com \
               --password admin
   ```
-  O si lo queremos poner sobre una sola linea:
+  O si lo queremos ejecutar en windows en una sola linea:
   ```yaml
     docker compose exec -it superset superset fab create-admin --username admin --firstname Superset --lastname Admin --email admin@superset.com --password admin
   ```
