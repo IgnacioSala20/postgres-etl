@@ -128,6 +128,10 @@ services:
               --email admin@superset.com \
               --password admin
   ```
+  O si lo queremos poner sobre una sola linea:
+  ```yaml
+    docker compose exec -it superset superset fab create-admin --username admin --firstname Superset --lastname Admin --email admin@superset.com --password admin
+  ```
 Migramos la base de datos
   ```yaml
     docker compose exec -it superset superset db upgrade
