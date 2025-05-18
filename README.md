@@ -5,7 +5,7 @@ Un proyecto ETL con Docker, PostgreSQL y Apache Superset para el análisis de da
 
 ## 📥 Descarga de Datasets
 
-Los datasets utilizados en este proyecto pueden descargarse desde el portal oficial de datos abiertos del Gobierno de Argentina:
+Los datasets utilizados en este proyecto pueden descargarse desde la pagina oficial de datos abiertos del Gobierno de Argentina:
 
 🔗 [https://datos.gob.ar/dataset](https://datos.gob.ar/dataset)
 
@@ -92,7 +92,7 @@ services:
     networks:
       - net
 ```
-##⚙️ Instrucciones de Configuración
+## ⚙️ Instrucciones de Configuración
 1. Clonar el repositorio
    ```yaml
      git clone <URL_DEL_REPOSITORIO>
@@ -118,9 +118,11 @@ services:
     docker compose up -d
   ```
 
-4.Crear un usuario administrador en Superset- Todo esto desde la terminal donde levantamos los servicios
-  Inicializamos el usuario de superset
-  Esto lo ejecutamos en linux y en windows, si da error en windows, se utiliza el comando de abajo que se encuentra en una sola linea
+4.Crear un usuario administrador en Superset(todo esto desde la terminal donde levantamos los servicios)
+
+  - Inicializamos el usuario de superset
+  
+  Mismo comando para Windosw que Linux, si da error en windows, se utiliza el comando de abajo que se encuentra en una sola linea
   ```yaml
     docker compose exec -it superset superset fab create-admin \
               --username admin \
@@ -129,7 +131,7 @@ services:
               --email admin@superset.com \
               --password admin
   ```
-  O si lo queremos ejecutar en windows en una sola linea:
+O si lo queremos ejecutar en windows en una sola linea:
   ```yaml
     docker compose exec -it superset superset fab create-admin --username admin --firstname Superset --lastname Admin --email admin@superset.com --password admin
   ```
@@ -145,7 +147,7 @@ Ahora si estamos listos para acceder a nuestras herramienta!!!
 
 5.Acceso a las herramientas
 - Superset: http://localhost:8088
-- Credenciales por defecto: admin / admin
+- Usuario por defecto generado: admin / admin
   
 ## 🚀 Uso del Proyecto
 
