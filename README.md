@@ -192,7 +192,7 @@ SELECT * FROM provincias;
 ```
 💡 Reemplaza provincias por el nombre de la tabla que hayas cargado.
 
-## Consultas para la Presentacion
+### Consultas para la Presentacion
 
 Las consultas utilizadas para la presentacion seran:
 
